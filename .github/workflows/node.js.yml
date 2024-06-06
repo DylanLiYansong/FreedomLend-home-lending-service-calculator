@@ -30,6 +30,9 @@ jobs:
     - run: npm run build --if-present
   
     - name: Deploy 🚀
+      env:
+        GITHUB_TOKEN: ${{ secrets.LENDING_SERVICE_CALCULATOR_PAT }}  # Use your PAT secret here
+
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: build # The folder the action should deploy.
