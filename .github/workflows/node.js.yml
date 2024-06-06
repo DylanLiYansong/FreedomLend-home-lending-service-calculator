@@ -28,7 +28,13 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-  
+    
+    - name: Configure Git for Deployment
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git remote set-url origin https://x-access-token:${{ secrets.LENDING_SERVICE_CALCULATOR_PAT }}@github.com/${{ github.repository }}.git
+   
     - name: Deploy 🚀
       env:
         GITHUB_TOKEN: ${{ secrets.LENDING_SERVICE_CALCULATOR_PAT }}  # Use your PAT secret here
