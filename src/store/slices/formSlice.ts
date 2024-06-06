@@ -7,7 +7,6 @@ import {
   initialApplicant,
   initialLoan,
 } from "@/utils/interfaces/formInterfaces";
-import { Section } from "@/utils/interfaces/FieldInterface";
 const MAX_APPLICANTS = 2;
 const MAX_COMMITMENTS = 4;
 

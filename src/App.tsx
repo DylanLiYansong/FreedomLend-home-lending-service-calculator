@@ -1,5 +1,5 @@
 import "./App.css";
-import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Homepage from "./components/Homepage";
 import React from "react";
 const theme = createTheme({
