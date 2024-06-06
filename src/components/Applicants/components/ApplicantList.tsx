@@ -5,7 +5,7 @@ import { RootState } from "@/store/store";
 import LabelContainer from "@/layout/LabelContainer";
 import InstanceListContainer from "@/layout/InstanceListContainer";
 import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
-import { SxPropsStyles } from "@/theme/globalStyle.js";
+import { Section } from "@/utils/interfaces/FieldInterface";
 const applicantsLabels = [
   "",
   "Annual Base Income",
@@ -24,7 +24,10 @@ const ApplicantList = () => {
 
   return (
     <SectionBodyContainer>
-      <LabelContainer labels={applicantsLabels} sectionName="applicants" />
+      <LabelContainer
+        labels={applicantsLabels}
+        sectionName={Section.Applicants}
+      />
       <InstanceListContainer>
         {applicants.map((applicant, i) => (
           <SingleApplicant index={i} key={applicant.id} applicant={applicant} />

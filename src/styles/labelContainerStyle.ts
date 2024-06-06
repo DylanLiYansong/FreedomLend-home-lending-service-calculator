@@ -1,5 +1,5 @@
 import { SxPropsStyles } from "@/theme/globalStyle.js";
-import { Section } from "@/utils/interfaces/formInterfaces";
+import { Section } from "@/utils/interfaces/FieldInterface";
 const applicantsLableContainerStyle: SxPropsStyles = {
   container: {
     display: "flex",
@@ -30,7 +30,7 @@ const defaultLableContainerStyle: SxPropsStyles = {
   },
 };
 export const getLabelContainerStyle = (section: Section) => {
-  if (section === "applicants") {
+  if (section === Section.ApplicantsExpense) {
     return applicantsLableContainerStyle;
   } else {
     return defaultLableContainerStyle;

@@ -3,7 +3,7 @@ import { ILoanInterface } from "@/utils/interfaces/formInterfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteLoan, getLoansNumber } from "@/store/slices/formSlice";
 import { Box, IconButton, Typography } from "@mui/material";
-import { loansFields } from "@/utils/interfaces/FieldInterface";
+import { getFields, Section } from "@/utils/interfaces/FieldInterface";
 import ClearIcon from "@mui/icons-material/Clear";
 import { singleInstanceStyles as styles } from "@/styles/singleInstanceStyle";
 import TextFieldGroup from "@/layout/TextFieldGroup";
@@ -11,6 +11,7 @@ import TextFieldGroup from "@/layout/TextFieldGroup";
 const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {
   const dispatch = useDispatch();
   const numberOfLoans = useSelector(getLoansNumber);
+  const { id: loanId } = loan;
   const handleDelete = () => {
     dispatch(deleteLoan({ loanId: loan.id }));
   };
@@ -24,7 +25,9 @@ const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {
           </IconButton>
         )}
       </Box>
-      <TextFieldGroup fields={loansFields} />
+      <TextFieldGroup
+        fields={getFields({ section: Section.Loans, instanceId: loanId })}
+      />
     </Box>
   );
 };

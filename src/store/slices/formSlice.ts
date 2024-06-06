@@ -4,7 +4,10 @@ import { RootState } from "../store";
 import {
   IApplicantInterface,
   ILoanInterface,
+  initialApplicant,
+  initialLoan,
 } from "@/utils/interfaces/formInterfaces";
+import { Section } from "@/utils/interfaces/FieldInterface";
 const MAX_APPLICANTS = 2;
 const MAX_COMMITMENTS = 4;
 
@@ -12,26 +15,9 @@ interface FormInterface {
   applicants: IApplicantInterface[];
   loans: ILoanInterface[];
 }
-const initialApplicantData: IApplicantInterface = {
-  id: uuidv4(),
-  annualBaseIncome: 0,
-  annualNonBaseIncome: "",
-  annualBonusIncome: "",
-  monthlyLivingExpenses: "",
-  monthlyOtherExpenses: "",
-  childSupport: "",
-  monthlyRent: "",
-};
-const initialLoan: ILoanInterface = {
-  id: uuidv4(),
-  loanAmount: "",
-  lendingInterestRate: "",
-  commitmentTerm: "",
-  interestOnlyTerm: "",
-};
-// const initialNonShareableCommitment;
+
 const initialState: FormInterface = {
-  applicants: [initialApplicantData],
+  applicants: [initialApplicant],
   loans: [initialLoan],
 };
 export const formSlice = createSlice({
@@ -40,7 +26,7 @@ export const formSlice = createSlice({
   reducers: {
     addApplicant: (state) => {
       if (state.applicants.length < MAX_APPLICANTS) {
-        const newApplicant = { ...initialApplicantData, id: uuidv4() };
+        const newApplicant = { ...initialApplicant, id: uuidv4() };
         const newApplicants = [...state.applicants, newApplicant];
         state.applicants = newApplicants;
       }

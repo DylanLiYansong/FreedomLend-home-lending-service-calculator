@@ -1,12 +1,9 @@
 import React from "react";
-import TextFieldGroup from "@/layout/TextFieldGroup";
 import { IApplicantInterface } from "@/utils/interfaces/formInterfaces";
-import { Box, IconButton, Typography } from "@mui/material";
-import ClearIcon from "@mui/icons-material/Clear";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteApplicant, getApplicantsNumber } from "@/store/slices/formSlice";
-import { singleInstanceStyles as styles } from "@/styles/singleInstanceStyle";
-import { incomeFields, expenseFields } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/interfaces/FieldInterface";
+import SingleInstance from "@/layout/SingleInstance";
 const SingleApplicant = ({
   applicant,
   index,
@@ -14,26 +11,21 @@ const SingleApplicant = ({
   applicant: IApplicantInterface;
   index: number;
 }) => {
-  const dispatch = useDispatch();
   const numberOfApplicants = useSelector(getApplicantsNumber);
-  const handleDelete = () => {
-    dispatch(deleteApplicant({ applicantId: applicant.id }));
+  const { id: applicantId } = applicant;
+  const dispatch = useDispatch();
+
+  const handleDeleteApplicant = () => {
+    dispatch(deleteApplicant({ applicantId }));
   };
   return (
-    <Box sx={styles.container}>
-      <Box sx={styles.header}>
-        <Typography variant="h6">Applicant {index + 1}</Typography>
-        {numberOfApplicants > 1 && (
-          <IconButton sx={{ height: "32px" }} onClick={handleDelete}>
-            <ClearIcon />
-          </IconButton>
-        )}
-      </Box>
-      <Box sx={styles.textFieldGroups}>
-        <TextFieldGroup fields={incomeFields} />
-        <TextFieldGroup fields={expenseFields} />
-      </Box>
-    </Box>
+    <SingleInstance
+      instanceIndex={index}
+      instanceId={applicantId}
+      section={Section.ApplicantsIncome}
+      deleteEnabled={numberOfApplicants > 1}
+      handleDeleteInstance={handleDeleteApplicant}
+    />
   );
 };
 

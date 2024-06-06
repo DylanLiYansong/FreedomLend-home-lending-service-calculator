@@ -3,7 +3,6 @@ import { NumericFormat, NumericFormatProps } from "react-number-format";
 import TextField from "@mui/material/TextField";
 import FieldInterface from "@/utils/interfaces/FieldInterface";
 import InputAdornment from "@mui/material/InputAdornment";
-import { BootstrapInput } from "@/components/NonShareableCommitment/components/CommitmentType/CommitmentTypeSelectInput";
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
