@@ -16,6 +16,7 @@ const applicantsLableContainerStyle: SxPropsStyles = {
     height: "45px",
   },
 };
+
 const defaultLableContainerStyle: SxPropsStyles = {
   container: {
     display: "flex",
@@ -30,7 +31,7 @@ const defaultLableContainerStyle: SxPropsStyles = {
   },
 };
 export const getLabelContainerStyle = (section: Section) => {
-  if (section === Section.ApplicantsExpense) {
+  if (section === Section.Applicants) {
     return applicantsLableContainerStyle;
   } else {
     return defaultLableContainerStyle;
