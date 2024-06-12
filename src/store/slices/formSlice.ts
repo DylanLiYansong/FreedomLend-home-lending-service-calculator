@@ -1,97 +1,150 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../store";
 import {
   IApplicantInterface,
   ILoanInterface,
+  IShareableCommitment,
+  INonShareableCommitment,
+  initialShareableCommitment,
+  initialNonShareableCommitment,
   initialApplicant,
   initialLoan,
 } from "@/utils/interfaces/formInterfaces";
-const MAX_APPLICANTS = 2;
-const MAX_COMMITMENTS = 4;
+import { Section } from "@/utils/interfaces/FieldInterface";
 
-interface FormInterface {
-  applicants: IApplicantInterface[];
-  loans: ILoanInterface[];
+const MAX_INSTANCES: Record<Section, number> = {
+  [Section.Applicants]: 2,
+  [Section.Loans]: 4,
+  [Section.ShareableCommitments]: 4,
+  [Section.NonShareableCommitments]: 4,
+};
+
+interface IState {
+  [Section.Applicants]: IApplicantInterface[];
+  [Section.Loans]: ILoanInterface[];
+  [Section.ShareableCommitments]: IShareableCommitment[];
+  [Section.NonShareableCommitments]: INonShareableCommitment[];
 }
 
-const initialState: FormInterface = {
-  applicants: [initialApplicant],
-  loans: [initialLoan],
+// Initialize the state
+const initialState: IState = {
+  [Section.Applicants]: [initialApplicant],
+  [Section.Loans]: [initialLoan],
+  [Section.ShareableCommitments]: [initialShareableCommitment],
+  [Section.NonShareableCommitments]: [initialNonShareableCommitment],
 };
 export const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
-    addApplicant: (state) => {
-      if (state.applicants.length < MAX_APPLICANTS) {
-        const newApplicant = { ...initialApplicant, id: uuidv4() };
-        const newApplicants = [...state.applicants, newApplicant];
-        state.applicants = newApplicants;
+    addInstance: (state, action: PayloadAction<{ section: Section }>) => {
+      const { section } = action.payload;
+      const max_instance = MAX_INSTANCES[section as Section];
+      switch (section) {
+        case Section.Applicants:
+          if (state.applicants.length < max_instance) {
+            const newApplicant = { ...initialApplicant, id: uuidv4() };
+            state.applicants = [...state.applicants, newApplicant];
+          }
+          return;
+        case Section.Loans:
+          if (state.loans.length < max_instance) {
+            const newLoan = { ...initialLoan, id: uuidv4() };
+            state.loans = [...state.loans, newLoan];
+          }
+          return;
+        case Section.ShareableCommitments:
+          if (state.shareableCommitments.length < max_instance) {
+            const newSC = { ...initialShareableCommitment, id: uuidv4() };
+            state.shareableCommitments = [...state.shareableCommitments, newSC];
+          }
+          return;
+        case Section.NonShareableCommitments:
+          if (state.nonShareableCommitments.length < max_instance) {
+            const newNSC = { ...initialNonShareableCommitment, id: uuidv4() };
+            state.nonShareableCommitments = [
+              ...state.nonShareableCommitments,
+              newNSC,
+            ];
+          }
+          return;
+        default:
+          return state;
       }
     },
-    deleteApplicant: (state, action) => {
-      const { applicantId } = action.payload;
-      const filter = state.applicants.filter(
-        (applicant) => applicant.id !== applicantId
-      );
-      state.applicants = filter;
-    },
-    updateApplicant: (state, action) => {
-      const { newAttributes } = action.payload;
-      const oldApplicantIndex = state.applicants.findIndex(
-        (aplicant) => aplicant.id === newAttributes.id
-      );
-      const oldApplicant = state.applicants[oldApplicantIndex];
-      const newApplicant = { ...oldApplicant, newAttributes };
-      state.applicants[oldApplicantIndex] = newApplicant;
-      const attributeName = "annualBaseIncome";
-      state.applicants[0][attributeName] = 5454;
-      console.log(state.applicants[0].annualBaseIncome);
-    },
-    addLoan: (state) => {
-      if (state.loans.length < MAX_COMMITMENTS) {
-        const newLoan = { ...initialLoan, id: uuidv4() };
-        const newLoans = [...state.loans, newLoan];
-        state.loans = newLoans;
+    deleteInstance: (
+      state,
+      action: PayloadAction<{ section: Section; instanceId: string }>
+    ) => {
+      const { section, instanceId } = action.payload;
+      switch (section) {
+        case Section.Applicants:
+          const filter = state.applicants.filter(
+            (applicant) => applicant.id !== instanceId
+          );
+          state.applicants = filter;
+          return;
+        case Section.Loans:
+          const filteredLoans = state.loans.filter(
+            (loan) => loan.id !== instanceId
+          );
+          state.loans = filteredLoans;
+          return;
+        case Section.ShareableCommitments:
+          const filteredSCs = state.shareableCommitments.filter(
+            (sc) => sc.id !== instanceId
+          );
+          state.shareableCommitments = filteredSCs;
+          return;
+        case Section.NonShareableCommitments:
+          const filteredNSCs = state.nonShareableCommitments.filter(
+            (nsc) => nsc.id !== instanceId
+          );
+          state.nonShareableCommitments = filteredNSCs;
+          return;
+        default:
+          return state;
       }
     },
-    deleteLoan: (state, action) => {
-      const { loanId } = action.payload;
-      console.log(action.payload);
-      const filteredLoans = state.loans.filter((loan) => loan.id !== loanId);
-      state.loans = filteredLoans;
-    },
-    updateLoan: (state, action) => {
-      const { newAttributes } = action.payload;
-      const oldLoanIndex = state.loans.findIndex(
-        (loan) => loan.id === newAttributes.id
-      );
-      const oldLoan = state.loans[oldLoanIndex];
-      const newLoan = { ...oldLoan, newAttributes };
-      state.loans[oldLoanIndex] = newLoan;
-    },
-    addNonShareableCommitment: (state) => {
-      if (state.loans.length < MAX_COMMITMENTS) {
-        const newLoan = { ...initialLoan, id: uuidv4() };
-        const newLoans = [...state.loans, newLoan];
-        state.loans = newLoans;
+    updateInstance: (state, action) => {
+      const { section, instanceId, newAttributes } = action.payload;
+      switch (section) {
+        case Section.Applicants:
+          const oldInstanceIndex = state.applicants.findIndex(
+            (aplicant) => aplicant.id === instanceId
+          );
+          const oldInstance = state.applicants[oldInstanceIndex];
+          const newInstance = { ...oldInstance, newAttributes };
+          state.applicants[oldInstanceIndex] = newInstance;
+          return;
+        case Section.Loans:
+          const oldLoanIndex = state.loans.findIndex(
+            (laon) => laon.id === instanceId
+          );
+          const oldLoan = state.loans[oldLoanIndex];
+          const newLoan = { ...oldLoan, newAttributes };
+          state.loans[oldLoanIndex] = newLoan;
+          return;
+        case Section.ShareableCommitments:
+          const oldSCIndex = state.applicants.findIndex(
+            (sc) => sc.id === instanceId
+          );
+          const oldSC = state.shareableCommitments[oldSCIndex];
+          const newSC = { ...oldSC, newAttributes };
+          state.shareableCommitments[oldSCIndex] = newSC;
+          return;
+        case Section.NonShareableCommitments:
+          const oldNSCIndex = state.applicants.findIndex(
+            (sc) => sc.id === instanceId
+          );
+          const oldNSC = state.shareableCommitments[oldNSCIndex];
+          const newNSC = { ...oldNSC, newAttributes };
+          state.shareableCommitments[oldNSCIndex] = newNSC;
+          return;
+        default:
+          return state;
       }
-    },
-    deleteNonShareableCommitment: (state, action) => {
-      const { loanId } = action.payload;
-      console.log(action.payload);
-      const filteredLoans = state.loans.filter((loan) => loan.id !== loanId);
-      state.loans = filteredLoans;
-    },
-    updateNonShareableCommitment: (state, action) => {
-      const { newAttributes } = action.payload;
-      const oldLoanIndex = state.loans.findIndex(
-        (loan) => loan.id === newAttributes.id
-      );
-      const oldLoan = state.loans[oldLoanIndex];
-      const newLoan = { ...oldLoan, newAttributes };
-      state.loans[oldLoanIndex] = newLoan;
     },
   },
 });
@@ -103,10 +156,8 @@ export const getLoansNumber = (state: RootState) => {
 };
 // Action creators are generated for each case reducer function
 export const {
-  addApplicant,
-  deleteApplicant,
-  updateApplicant,
-  addLoan,
-  deleteLoan,
+  addInstance,
+  deleteInstance,
+  updateInstance,
 } = formSlice.actions;
 export default formSlice.reducer;

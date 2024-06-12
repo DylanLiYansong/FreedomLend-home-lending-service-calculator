@@ -5,18 +5,9 @@ import { RootState } from "@/store/store";
 import LabelContainer from "@/layout/LabelContainer";
 import InstanceListContainer from "@/layout/InstanceListContainer";
 import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
-import { Section } from "@/utils/interfaces/FieldInterface";
-const applicantsLabels = [
-  "",
-  "Annual Base Income",
-  "Annual Non-base Income",
-  "Annual Bonus",
-  "Monthly Basic Expense",
-  "Monthly Other Expense",
-  "Child Support/alimony",
-  "Monthly Rent",
-];
-
+import { SectionPlus } from "@/utils/interfaces/FieldInterface";
+// import { applicantsLabels } from "@/utils/labels";
+import { applicantsLabels } from "@/utils/interfaces/FieldInterface";
 const ApplicantList = () => {
   const applicants = useSelector((state: RootState) => {
     return state.form.applicants;
@@ -26,7 +17,7 @@ const ApplicantList = () => {
     <SectionBodyContainer>
       <LabelContainer
         labels={applicantsLabels}
-        sectionName={Section.Applicants}
+        sectionName={SectionPlus.Applicants}
       />
       <InstanceListContainer>
         {applicants.map((applicant, i) => (

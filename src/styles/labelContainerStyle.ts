@@ -1,5 +1,5 @@
 import { SxPropsStyles } from "@/theme/globalStyle.js";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { SectionPlus } from "@/utils/interfaces/FieldInterface";
 const applicantsLableContainerStyle: SxPropsStyles = {
   container: {
     display: "flex",
@@ -30,8 +30,8 @@ const defaultLableContainerStyle: SxPropsStyles = {
     height: "45px",
   },
 };
-export const getLabelContainerStyle = (section: Section) => {
-  if (section === Section.Applicants) {
+export const getLabelContainerStyle = (section: SectionPlus) => {
+  if (section === SectionPlus.Applicants) {
     return applicantsLableContainerStyle;
   } else {
     return defaultLableContainerStyle;

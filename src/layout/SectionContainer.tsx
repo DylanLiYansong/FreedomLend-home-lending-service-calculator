@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import { Paper } from "@mui/material";
+import { Paper, Box, Collapse } from "@mui/material";
 import Header from "@/layout/SectionHeader";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
@@ -25,21 +25,29 @@ const SectionContainer = ({
   addInstanceDispatch,
 }: SectionProps) => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+  const handleChange = () => setOpen((prev) => !prev);
   const dispatch = useDispatch();
   const handleAddInstance = () => {
     dispatch(addInstanceDispatch);
   };
+  const childComponent = <Box>{children}</Box>;
+
   return (
     <Paper elevation={3} sx={style}>
       <Header
         headerText={headerText}
         addButtonLable={addButtonLable}
-        handleClickHeader={handleOpen}
+        handleClickHeader={handleChange}
         handleAddbutton={handleAddInstance}
         count={!open ? `(${numberOfInstances})` : ""}
       />
-      {open && children}
+      <Collapse
+        in={open}
+        style={{ transformOrigin: "0 0 0" }}
+        {...(open ? { timeout: 300 } : {})}
+      >
+        {childComponent}
+      </Collapse>
     </Paper>
   );
 };

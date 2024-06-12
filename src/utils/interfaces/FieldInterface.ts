@@ -1,18 +1,24 @@
 export type inputType = "amount" | "quantity" | "rate" | "select";
-export enum Section {
+export enum SectionPlus {
   ApplicantsIncome = "applicantsIncomes",
   ApplicantsExpense = "applicantsExpenses",
   Applicants = "applicants",
   Loans = "loans",
-  ShareableCommitments = "ShareableCommitments",
-  NonShareableCommitments = "NonShareableCommitments",
+  ShareableCommitments = "shareableCommitments",
+  NonShareableCommitments = "nonShareableCommitments",
+}
+export enum Section {
+  Applicants = "applicants",
+  Loans = "loans",
+  ShareableCommitments = "shareableCommitments",
+  NonShareableCommitments = "nonShareableCommitments",
 }
 export const SectionNames: Record<string, string> = {
-  [Section.ApplicantsIncome]: "Applicant",
-  [Section.ApplicantsExpense]: "Applicant",
-  [Section.Loans]: "Loan",
-  [Section.ShareableCommitments]: "Shareable Commitment",
-  [Section.NonShareableCommitments]: "NonShareable Commitment",
+  [SectionPlus.ApplicantsIncome]: "Applicant",
+  [SectionPlus.ApplicantsExpense]: "Applicant",
+  [SectionPlus.Loans]: "Loan",
+  [SectionPlus.ShareableCommitments]: "Shareable Commitment",
+  [SectionPlus.NonShareableCommitments]: "NonShareable Commitment",
 };
 
 export default interface FieldInterface {
@@ -62,6 +68,7 @@ export const expenseFields: FieldInterface[] = [
     type: "amount",
   },
 ];
+
 export const loansFields: FieldInterface[] = [
   {
     id: "loanAmount",
@@ -140,22 +147,36 @@ const NonShareableCommitmentFields: FieldInterface[] = [
     type: "amount",
   },
 ];
+export const applicantsLabels = [
+  "",
+  ...incomeFields.map((field) => field.label),
+  ...expenseFields.map((field) => field.label),
+];
+export const loansLabels = ["", ...loansFields.map((field) => field.label)];
+export const shareableCommitmentLabels = [
+  "",
+  ...ShareableCommitmentFields.map((field) => field.label),
+];
+export const NonshareableCommitmentLabels = [
+  "",
+  ...NonShareableCommitmentFields.map((field) => field.label),
+];
 
 const getSimpleFields = function getSimpleFields({
   section,
 }: {
-  section: Section;
+  section: SectionPlus;
 }): FieldInterface[] {
   switch (section) {
-    case Section.ApplicantsIncome:
+    case SectionPlus.ApplicantsIncome:
       return incomeFields;
-    case Section.ApplicantsExpense:
+    case SectionPlus.ApplicantsExpense:
       return expenseFields;
-    case Section.Loans:
+    case SectionPlus.Loans:
       return loansFields;
-    case Section.ShareableCommitments:
+    case SectionPlus.ShareableCommitments:
       return ShareableCommitmentFields;
-    case Section.NonShareableCommitments:
+    case SectionPlus.NonShareableCommitments:
       return NonShareableCommitmentFields;
     default:
       return [];
@@ -166,7 +187,7 @@ export const getFields = function ({
   section,
   instanceId,
 }: {
-  section: Section;
+  section: SectionPlus;
   instanceId: string;
 }): FieldInterface[] {
   const fields = getSimpleFields({ section });

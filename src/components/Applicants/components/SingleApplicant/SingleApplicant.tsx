@@ -1,8 +1,10 @@
 import React from "react";
 import { IApplicantInterface } from "@/utils/interfaces/formInterfaces";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteApplicant, getApplicantsNumber } from "@/store/slices/formSlice";
+import { deleteInstance, getApplicantsNumber } from "@/store/slices/formSlice";
 import { Section } from "@/utils/interfaces/FieldInterface";
+
+import { SectionPlus } from "@/utils/interfaces/FieldInterface";
 import SingleInstance from "@/layout/SingleInstance";
 const SingleApplicant = ({
   applicant,
@@ -16,13 +18,15 @@ const SingleApplicant = ({
   const dispatch = useDispatch();
 
   const handleDeleteApplicant = () => {
-    dispatch(deleteApplicant({ applicantId }));
+    dispatch(
+      deleteInstance({ section: Section.Applicants, instanceId: applicantId })
+    );
   };
   return (
     <SingleInstance
       instanceIndex={index}
       instanceId={applicantId}
-      section={Section.ApplicantsIncome}
+      section={SectionPlus.ApplicantsIncome}
       deleteEnabled={numberOfApplicants > 1}
       handleDeleteInstance={handleDeleteApplicant}
     />

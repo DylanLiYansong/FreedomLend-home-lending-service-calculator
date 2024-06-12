@@ -6,13 +6,13 @@ import { singleInstanceStyles as styles } from "@/styles/singleInstanceStyle";
 import {
   getFields,
   SectionNames,
-  Section,
+  SectionPlus,
 } from "@/utils/interfaces/FieldInterface";
 
 interface SingleInstanceProps {
   instanceIndex: number;
   instanceId: string;
-  section: Section;
+  section: SectionPlus;
   deleteEnabled: boolean;
   handleDeleteInstance: () => void;
 }
@@ -44,7 +44,7 @@ const SingleInstance: FC<SingleInstanceProps> = ({
         />
         <TextFieldGroup
           fields={getFields({
-            section: Section.ApplicantsExpense,
+            section: SectionPlus.ApplicantsExpense,
             instanceId,
           })}
         />
