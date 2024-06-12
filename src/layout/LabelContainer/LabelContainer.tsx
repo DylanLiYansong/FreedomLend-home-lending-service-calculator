@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { SectionPlus } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/interfaces/FieldInterface";
 import { getLabelContainerStyle } from "@/styles/labelContainerStyle";
 
 const LabelContainer = ({
@@ -8,7 +8,7 @@ const LabelContainer = ({
   sectionName,
 }: {
   labels: string[];
-  sectionName: SectionPlus;
+  sectionName: Section;
 }) => {
   const styles = getLabelContainerStyle(sectionName);
 

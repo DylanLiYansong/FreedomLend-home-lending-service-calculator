@@ -154,6 +154,13 @@ export const getApplicantsNumber = (state: RootState) => {
 export const getLoansNumber = (state: RootState) => {
   return state.form.loans.length;
 };
+export const getSCNumber = (state: RootState) => {
+  return state.form.shareableCommitments.length;
+};
+export const getNSCNumber = (state: RootState) => {
+  return state.form.nonShareableCommitments.length;
+};
+
 // Action creators are generated for each case reducer function
 export const {
   addInstance,

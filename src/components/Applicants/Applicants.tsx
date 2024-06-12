@@ -2,19 +2,16 @@ import React from "react";
 import ApplicantList from "./components/ApplicantList";
 import { useSelector } from "react-redux";
 import { addInstance } from "@/store/slices/formSlice";
-import { RootState } from "@/store/store";
 import SectionContainer from "@/layout/SectionContainer";
 import { Section } from "@/utils/interfaces/FieldInterface";
+import { getApplicantsNumber } from "@/store/slices/formSlice";
 const Applicants = () => {
-  const numOfApplicants = useSelector(
-    (state: RootState) => state.form.applicants.length
-  );
-
+  const numOfInstances = useSelector(getApplicantsNumber);
   return (
     <SectionContainer
       headerText="Applicants"
       addButtonLable="ADD APPLICANT"
-      numberOfInstances={numOfApplicants}
+      numberOfInstances={numOfInstances}
       addInstanceDispatch={addInstance({ section: Section.Applicants })}
       children={<ApplicantList />}
     />

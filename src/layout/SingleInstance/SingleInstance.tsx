@@ -2,17 +2,17 @@ import React, { FC } from "react";
 import TextFieldGroup from "@/layout/TextFieldGroup";
 import { Box, IconButton, Typography } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { singleInstanceStyles as styles } from "@/styles/singleInstanceStyle";
+import { singleInstanceContainerStyle as styles } from "@/styles/singleInstanceStyle";
+
 import {
   getFields,
   SectionNames,
-  SectionPlus,
+  Section,
 } from "@/utils/interfaces/FieldInterface";
-
 interface SingleInstanceProps {
   instanceIndex: number;
   instanceId: string;
-  section: SectionPlus;
+  section: Section;
   deleteEnabled: boolean;
   handleDeleteInstance: () => void;
 }
@@ -26,7 +26,7 @@ const SingleInstance: FC<SingleInstanceProps> = ({
   return (
     <Box sx={styles.container}>
       <Box sx={styles.header}>
-        <Typography variant="h6">
+        <Typography variant="subtitle1">
           {SectionNames[section]} {instanceIndex + 1}
         </Typography>
         {deleteEnabled && (
@@ -35,20 +35,13 @@ const SingleInstance: FC<SingleInstanceProps> = ({
           </IconButton>
         )}
       </Box>
-      <Box sx={styles.textFieldGroups}>
-        <TextFieldGroup
-          fields={getFields({
-            section,
-            instanceId,
-          })}
-        />
-        <TextFieldGroup
-          fields={getFields({
-            section: SectionPlus.ApplicantsExpense,
-            instanceId,
-          })}
-        />
-      </Box>
+      <TextFieldGroup
+        fields={getFields({
+          section,
+          instanceId,
+        })}
+        section={section}
+      />
     </Box>
   );
 };

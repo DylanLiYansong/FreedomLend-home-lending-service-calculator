@@ -8,7 +8,7 @@ interface CustomProps {
   name: string;
 }
 
-const NumericrInput = ({ field }: { field: FieldInterface }) => {
+const NumericInput = ({ field }: { field: FieldInterface }) => {
   const [value, setValue] = React.useState("");
   const { id, label, type } = field;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,4 +72,4 @@ const AmountFormat = React.forwardRef<NumericFormatProps, CustomProps>(
     );
   }
 );
-export default NumericrInput;
+export default NumericInput;

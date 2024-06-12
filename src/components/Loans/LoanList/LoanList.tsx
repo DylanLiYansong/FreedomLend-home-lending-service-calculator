@@ -5,7 +5,7 @@ import LabelContainer from "@/layout/LabelContainer";
 import InstanceListContainer from "@/layout/InstanceListContainer";
 import Loan from "@/components/Loans/Loan";
 import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
-import { SectionPlus } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/interfaces/FieldInterface";
 
 const loansLabels = [
   "",
@@ -22,7 +22,7 @@ const LoanList = () => {
 
   return (
     <SectionBodyContainer>
-      <LabelContainer labels={loansLabels} sectionName={SectionPlus.Loans} />
+      <LabelContainer labels={loansLabels} sectionName={Section.Loans} />
       <InstanceListContainer>
         {loans.map((loan, i) => (
           <Loan index={i} key={loan.id} loan={loan} />

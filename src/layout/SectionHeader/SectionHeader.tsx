@@ -45,7 +45,7 @@ const SectionHeader = ({
         variant="contained"
         startIcon={<AddIcon />}
         onClick={handleAddbutton}
-        sx={{ border: "solid 1px", width: "180px" }}
+        sx={{ border: "solid 1px", minWidth: "180px" }}
       >
         {addButtonLable}
       </Button>

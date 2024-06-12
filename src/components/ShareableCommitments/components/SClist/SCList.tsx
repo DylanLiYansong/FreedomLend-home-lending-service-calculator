@@ -1,29 +1,31 @@
 import React from "react";
-import SingleApplicant from "@/components/Applicants/components/SingleApplicant";
+import SC from "../SC/SC";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import LabelContainer from "@/layout/LabelContainer";
 import InstanceListContainer from "@/layout/InstanceListContainer";
 import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
 import { Section } from "@/utils/interfaces/FieldInterface";
-import { applicantsLabels } from "@/utils/interfaces/FieldInterface";
-const ApplicantList = () => {
-  const applicants = useSelector((state: RootState) => {
-    return state.form.applicants;
+import { scLabels } from "@/utils/interfaces/FieldInterface";
+
+const SCList = () => {
+  const ShareableCommitments = useSelector((state: RootState) => {
+    return state.form.shareableCommitments;
   });
 
   return (
     <SectionBodyContainer>
       <LabelContainer
-        labels={applicantsLabels}
-        sectionName={Section.Applicants}
+        labels={scLabels}
+        sectionName={Section.ShareableCommitments}
       />
       <InstanceListContainer>
-        {applicants.map((applicant, i) => (
-          <SingleApplicant index={i} key={applicant.id} applicant={applicant} />
+        {ShareableCommitments.map((sc, i) => (
+          <SC index={i} key={sc.id} instance={sc} />
         ))}
       </InstanceListContainer>
     </SectionBodyContainer>
   );
 };
-export default ApplicantList;
+
+export default SCList;
