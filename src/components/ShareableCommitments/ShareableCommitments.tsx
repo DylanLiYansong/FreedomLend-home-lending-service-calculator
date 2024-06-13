@@ -1,9 +1,9 @@
 import React from "react";
-import SCList from "./components/SClist/SCList";
+import SCList from "./components/SClist";
 import { useSelector } from "react-redux";
 import { addInstance } from "@/store/slices/formSlice";
 import SectionContainer from "@/layout/SectionContainer";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
 import { getSCNumber } from "@/store/slices/formSlice";
 
 const ShareableCommitments = () => {

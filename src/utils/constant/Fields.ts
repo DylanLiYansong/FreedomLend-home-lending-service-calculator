@@ -13,7 +13,7 @@ export const SectionNames: Record<string, string> = {
   [Section.NonShareableCommitments]: "NonShareable Commitment",
 };
 
-export default interface FieldInterface {
+export interface FieldInterface {
   id: string;
   label: string;
   type: inputType;
@@ -58,15 +58,6 @@ export const applicantsFields: FieldInterface[] = [
     type: "amount",
   },
 ];
-export const applicantsSectionLabels = [
-  "Annual base income",
-  "Annual non-base income",
-  "Annual bonus income",
-  "Monthly living expenses",
-  "Monthly other expenses",
-  "Child support/alimony",
-  "Monthly rent",
-];
 
 export const loansFields: FieldInterface[] = [
   {
@@ -90,12 +81,7 @@ export const loansFields: FieldInterface[] = [
     type: "quantity",
   },
 ];
-export const loansSectionLabels = [
-  "Loan amount",
-  "Lending interest rate (%)",
-  "Term (years)",
-  "Interest only terms (years)",
-];
+
 export const ShareableCommitmentFields: FieldInterface[] = [
   {
     id: "outstandingBalanceSC",
@@ -126,7 +112,7 @@ export const ShareableCommitmentFields: FieldInterface[] = [
 const NonShareableCommitmentFields: FieldInterface[] = [
   {
     id: "commitmentTypeNSC",
-    label: "Commitment Type",
+    label: "Type",
     type: "select",
   },
   {
@@ -136,25 +122,17 @@ const NonShareableCommitmentFields: FieldInterface[] = [
   },
   {
     id: "currentLimitNSC",
-    label: "Current Limit",
+    label: "Limit",
     type: "amount",
   },
 
   {
     id: "customerDeclaredRepaymentNSC",
-    label: "Customer Declared Repayment",
+    label: "Repayment",
     type: "amount",
   },
 ];
 
-export const scSectionLabels = [
-  "Commitment Type",
-  "Outstanding Balance",
-  "Current Limit",
-  "Current Interest Rate (%)",
-  "Remaining P & I Term (months)",
-  "Customer Declared Repayment",
-];
 export const NonshareableCommitmentLabels = [
   ...NonShareableCommitmentFields.map((field) => field.label),
 ];

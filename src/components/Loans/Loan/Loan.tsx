@@ -2,7 +2,7 @@ import React from "react";
 import { ILoanInterface } from "@/utils/interfaces/formInterfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteInstance, getLoansNumber } from "@/store/slices/formSlice";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
 import SingleInstance from "@/layout/SingleInstance";
 
 const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {

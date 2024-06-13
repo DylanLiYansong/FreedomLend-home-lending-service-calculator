@@ -1,29 +1,32 @@
 import React from "react";
+import NSC from "../NSC/NSC";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import LabelContainer from "@/layout/SectionLabels";
 import InstanceListContainer from "@/layout/InstanceListContainer";
-import Loan from "@/components/Loans/Loan";
 import { sectionBodyContainertyles } from "@/styles/styles";
 import { Section } from "@/utils/constant/Fields";
-import { loansSectionLabels } from "@/utils/constant/SectionLabels";
+import { nscSectionLabels } from "@/utils/constant/SectionLabels";
 import { Box } from "@mui/material";
 
-const LoanList = () => {
-  const loans = useSelector((state: RootState) => {
-    return state.form.loans;
+const NSCList = () => {
+  const nonShareableCommitments = useSelector((state: RootState) => {
+    return state.form.nonShareableCommitments;
   });
 
   return (
     <Box sx={sectionBodyContainertyles.container}>
-      <LabelContainer labels={loansSectionLabels} section={Section.Loans} />
+      <LabelContainer
+        labels={nscSectionLabels}
+        section={Section.NonShareableCommitments}
+      />
       <InstanceListContainer>
-        {loans.map((loan, i) => (
-          <Loan index={i} key={loan.id} loan={loan} />
+        {nonShareableCommitments.map((nsc, i) => (
+          <NSC index={i} key={nsc.id} instance={nsc} />
         ))}
       </InstanceListContainer>
     </Box>
   );
 };
 
-export default LoanList;
+export default NSCList;

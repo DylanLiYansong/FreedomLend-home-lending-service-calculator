@@ -1,5 +1,5 @@
 import { SxPropsStyles } from "@/theme/globalStyle.js";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
 
 const LABEL_MIN_WIDTH = "200px";
 const APPLICANT_INCOME_EXPENSE_GAP = "25px";

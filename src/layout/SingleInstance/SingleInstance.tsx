@@ -4,11 +4,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import { singleInstanceContainerStyle as styles } from "@/styles/singleInstanceStyle";
 
-import {
-  getFields,
-  SectionNames,
-  Section,
-} from "@/utils/interfaces/FieldInterface";
+import { getFields, SectionNames, Section } from "@/utils/constant/Fields";
 interface SingleInstanceProps {
   instanceIndex: number;
   instanceId: string;

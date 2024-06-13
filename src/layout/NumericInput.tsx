@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NumericFormat, NumericFormatProps } from "react-number-format";
 import TextField from "@mui/material/TextField";
-import FieldInterface from "@/utils/interfaces/FieldInterface";
+import { FieldInterface } from "@/utils/constant/Fields";
 import InputAdornment from "@mui/material/InputAdornment";
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;

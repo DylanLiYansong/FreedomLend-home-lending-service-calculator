@@ -3,7 +3,7 @@ import ApplicantList from "./components/ApplicantList";
 import { useSelector } from "react-redux";
 import { addInstance } from "@/store/slices/formSlice";
 import SectionContainer from "@/layout/SectionContainer";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
 import { getApplicantsNumber } from "@/store/slices/formSlice";
 const Applicants = () => {
   const numOfInstances = useSelector(getApplicantsNumber);

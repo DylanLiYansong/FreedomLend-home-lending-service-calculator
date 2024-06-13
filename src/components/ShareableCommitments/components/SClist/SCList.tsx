@@ -5,8 +5,8 @@ import { RootState } from "@/store/store";
 import LabelContainer from "@/layout/SectionLabels";
 import InstanceListContainer from "@/layout/InstanceListContainer";
 import { sectionBodyContainertyles } from "@/styles/styles";
-import { Section } from "@/utils/interfaces/FieldInterface";
-import { scSectionLabels } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
+import { scSectionLabels } from "@/utils/constant/SectionLabels";
 import { Box } from "@mui/material";
 
 const SCList = () => {

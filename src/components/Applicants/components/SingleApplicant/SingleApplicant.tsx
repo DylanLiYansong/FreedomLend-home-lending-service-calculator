@@ -2,7 +2,7 @@ import React from "react";
 import { IApplicantInterface } from "@/utils/interfaces/formInterfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteInstance, getApplicantsNumber } from "@/store/slices/formSlice";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
 import SingleInstance from "@/layout/SingleInstance";
 const SingleApplicant = ({
   applicant,

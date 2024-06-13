@@ -11,7 +11,7 @@ import {
   initialApplicant,
   initialLoan,
 } from "@/utils/interfaces/formInterfaces";
-import { Section } from "@/utils/interfaces/FieldInterface";
+import { Section } from "@/utils/constant/Fields";
 
 const MAX_INSTANCES: Record<Section, number> = {
   [Section.Applicants]: 2,

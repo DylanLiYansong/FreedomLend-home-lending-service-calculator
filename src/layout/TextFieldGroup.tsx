@@ -1,11 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
-import FieldInterface from "@/utils/interfaces/FieldInterface";
+import { FieldInterface } from "@/utils/constant/Fields";
 import NumericInput from "./NumericInput";
 import { SxPropsStyles } from "@/theme/globalStyle.js";
-import { Section } from "@/utils/interfaces/FieldInterface";
-import CommitmentTypeSelectInput from "@/components/ShareableCommitments/components/CommitmentType/CommitmentTypeSelectInput";
-
+import { Section } from "@/utils/constant/Fields";
+import { shareableCommitmentTypes } from "@/utils/constant/SectionLabels";
+import Selector from "./Selector";
 const normalStyles: SxPropsStyles = {
   textFieldGroups: {
     display: "flex",
@@ -34,7 +34,7 @@ const TextFieldGroup = ({
   return (
     <Box sx={styles.textFieldGroups}>
       {section === Section.ShareableCommitments && (
-        <CommitmentTypeSelectInput />
+        <Selector options={shareableCommitmentTypes} />
       )}
       {fields.map((field) => {
         return <NumericInput key={field.id} field={field} />;
