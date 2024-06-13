@@ -1,19 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import LabelContainer from "@/layout/LabelContainer";
+import LabelContainer from "@/layout/SectionLabels";
 import InstanceListContainer from "@/layout/InstanceListContainer";
 import Loan from "@/components/Loans/Loan";
-import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
+import { sectionBodyContainertyles } from "@/styles/styles";
 import { Section } from "@/utils/interfaces/FieldInterface";
-
-const loansLabels = [
-  "",
-  "Loan amount",
-  "Lending interest rate (%)",
-  "Term (years)",
-  "Interest only terms (years)",
-];
+import { loansSectionLabels } from "@/utils/interfaces/FieldInterface";
+import { Box } from "@mui/material";
 
 const LoanList = () => {
   const loans = useSelector((state: RootState) => {
@@ -21,14 +15,14 @@ const LoanList = () => {
   });
 
   return (
-    <SectionBodyContainer>
-      <LabelContainer labels={loansLabels} sectionName={Section.Loans} />
+    <Box sx={sectionBodyContainertyles.container}>
+      <LabelContainer labels={loansSectionLabels} section={Section.Loans} />
       <InstanceListContainer>
         {loans.map((loan, i) => (
           <Loan index={i} key={loan.id} loan={loan} />
         ))}
       </InstanceListContainer>
-    </SectionBodyContainer>
+    </Box>
   );
 };
 

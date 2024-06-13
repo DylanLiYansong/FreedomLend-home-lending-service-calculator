@@ -2,28 +2,29 @@ import React from "react";
 import SingleApplicant from "@/components/Applicants/components/SingleApplicant";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import LabelContainer from "@/layout/LabelContainer";
+import LabelContainer from "@/layout/SectionLabels";
 import InstanceListContainer from "@/layout/InstanceListContainer";
-import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
 import { Section } from "@/utils/interfaces/FieldInterface";
-import { applicantsLabels } from "@/utils/interfaces/FieldInterface";
+import { applicantsSectionLabels } from "@/utils/interfaces/FieldInterface";
+import { sectionBodyContainertyles } from "@/styles/styles";
+import { Box } from "@mui/material";
 const ApplicantList = () => {
   const applicants = useSelector((state: RootState) => {
     return state.form.applicants;
   });
 
   return (
-    <SectionBodyContainer>
+    <Box sx={sectionBodyContainertyles.container}>
       <LabelContainer
-        labels={applicantsLabels}
-        sectionName={Section.Applicants}
+        labels={applicantsSectionLabels}
+        section={Section.Applicants}
       />
       <InstanceListContainer>
         {applicants.map((applicant, i) => (
           <SingleApplicant index={i} key={applicant.id} applicant={applicant} />
         ))}
       </InstanceListContainer>
-    </SectionBodyContainer>
+    </Box>
   );
 };
 export default ApplicantList;

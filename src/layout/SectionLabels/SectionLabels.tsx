@@ -3,14 +3,14 @@ import { Box, Typography } from "@mui/material";
 import { Section } from "@/utils/interfaces/FieldInterface";
 import { getLabelContainerStyle } from "@/styles/labelContainerStyle";
 
-const LabelContainer = ({
+const SectionLabels = ({
   labels,
-  sectionName,
+  section,
 }: {
   labels: string[];
-  sectionName: Section;
+  section: Section;
 }) => {
-  const styles = getLabelContainerStyle(sectionName);
+  const styles = getLabelContainerStyle(section);
 
   return (
     <Box sx={styles.container}>
@@ -23,4 +23,4 @@ const LabelContainer = ({
   );
 };
 
-export default LabelContainer;
+export default SectionLabels;

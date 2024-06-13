@@ -58,6 +58,15 @@ export const applicantsFields: FieldInterface[] = [
     type: "amount",
   },
 ];
+export const applicantsSectionLabels = [
+  "Annual base income",
+  "Annual non-base income",
+  "Annual bonus income",
+  "Monthly living expenses",
+  "Monthly other expenses",
+  "Child support/alimony",
+  "Monthly rent",
+];
 
 export const loansFields: FieldInterface[] = [
   {
@@ -81,13 +90,13 @@ export const loansFields: FieldInterface[] = [
     type: "quantity",
   },
 ];
-
+export const loansSectionLabels = [
+  "Loan amount",
+  "Lending interest rate (%)",
+  "Term (years)",
+  "Interest only terms (years)",
+];
 export const ShareableCommitmentFields: FieldInterface[] = [
-  {
-    id: "commitmentTypeSC",
-    label: "Commitment Type",
-    type: "select",
-  },
   {
     id: "outstandingBalanceSC",
     label: "Outstanding Balance",
@@ -95,22 +104,22 @@ export const ShareableCommitmentFields: FieldInterface[] = [
   },
   {
     id: "currentLimitSC",
-    label: "Current Limit",
+    label: "Limit",
     type: "amount",
   },
   {
     id: "currentInterestRate",
-    label: "Current Interest Rate (%)",
+    label: "Interest Rate",
     type: "rate",
   },
   {
     id: "remainingPITerm",
-    label: "Remaining P & I Term (months)",
+    label: "Remaining Term",
     type: "quantity",
   },
   {
     id: "customerDeclaredRepaymentSC",
-    label: "Customer Declared Repayment",
+    label: "Repayment",
     type: "amount",
   },
 ];
@@ -137,17 +146,16 @@ const NonShareableCommitmentFields: FieldInterface[] = [
     type: "amount",
   },
 ];
-export const applicantsLabels = [
-  "",
-  ...applicantsFields.map((field) => field.label),
-];
-export const loansLabels = ["", ...loansFields.map((field) => field.label)];
-export const scLabels = [
-  "",
-  ...ShareableCommitmentFields.map((field) => field.label),
+
+export const scSectionLabels = [
+  "Commitment Type",
+  "Outstanding Balance",
+  "Current Limit",
+  "Current Interest Rate (%)",
+  "Remaining P & I Term (months)",
+  "Customer Declared Repayment",
 ];
 export const NonshareableCommitmentLabels = [
-  "",
   ...NonShareableCommitmentFields.map((field) => field.label),
 ];
 

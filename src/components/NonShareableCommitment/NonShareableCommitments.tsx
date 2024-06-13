@@ -1,5 +1,5 @@
 import React from "react";
-import CommitmentTypeSelectInput from "./components/CommitmentType/CommitmentTypeSelectInput";
+import CommitmentTypeSelectInput from "../ShareableCommitments/components/CommitmentType/CommitmentTypeSelectInput";
 
 const NonShareableCommitment = () => {
   return (

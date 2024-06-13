@@ -30,17 +30,17 @@ const SingleInstance: FC<SingleInstanceProps> = ({
           {SectionNames[section]} {instanceIndex + 1}
         </Typography>
         {deleteEnabled && (
-          <IconButton sx={{ height: "32px" }} onClick={handleDeleteInstance}>
+          <IconButton onClick={handleDeleteInstance}>
             <ClearIcon />
           </IconButton>
         )}
       </Box>
       <TextFieldGroup
+        section={section}
         fields={getFields({
           section,
           instanceId,
         })}
-        section={section}
       />
     </Box>
   );

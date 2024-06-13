@@ -44,6 +44,11 @@ const NumericInput = ({ field }: { field: FieldInterface }) => {
       name="numberformat"
       id={id}
       size="small"
+      InputLabelProps={{
+        sx: {
+          fontSize: "0.85rem", // Adjust the font size as needed
+        },
+      }}
       InputProps={getInputProps()}
       sx={{ width: "100%" }}
       variant="standard"

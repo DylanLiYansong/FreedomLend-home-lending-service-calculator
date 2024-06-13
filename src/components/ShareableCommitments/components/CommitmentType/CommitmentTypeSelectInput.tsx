@@ -9,7 +9,17 @@ const CommitmentTypeSelectInput = () => {
       <TextField
         id="select-shareable-commitmenttype"
         select
-        defaultValue="EUR"
+        size="small"
+        sx={{
+          minWidth: "200px",
+          "& .MuiInputBase-root": {
+            height: 45,
+          },
+          "& .MuiInputBase-input": {
+            height: "100%",
+            boxSizing: "border-box",
+          },
+        }}
         SelectProps={{
           native: true,
           input: <BootstrapInput />,
@@ -33,7 +43,7 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 4,
     fontSize: 14,
-    padding: "8px 18px 8px 10px",
+    // padding: "8px 18px 8px 10px",
   },
 }));
 const TYPES = [

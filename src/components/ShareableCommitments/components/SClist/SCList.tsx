@@ -2,11 +2,12 @@ import React from "react";
 import SC from "../SC/SC";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import LabelContainer from "@/layout/LabelContainer";
+import LabelContainer from "@/layout/SectionLabels";
 import InstanceListContainer from "@/layout/InstanceListContainer";
-import SectionBodyContainer from "@/layout/SectionBodyContainer/SectionBodyContainer";
+import { sectionBodyContainertyles } from "@/styles/styles";
 import { Section } from "@/utils/interfaces/FieldInterface";
-import { scLabels } from "@/utils/interfaces/FieldInterface";
+import { scSectionLabels } from "@/utils/interfaces/FieldInterface";
+import { Box } from "@mui/material";
 
 const SCList = () => {
   const ShareableCommitments = useSelector((state: RootState) => {
@@ -14,17 +15,17 @@ const SCList = () => {
   });
 
   return (
-    <SectionBodyContainer>
+    <Box sx={sectionBodyContainertyles.container}>
       <LabelContainer
-        labels={scLabels}
-        sectionName={Section.ShareableCommitments}
+        labels={scSectionLabels}
+        section={Section.ShareableCommitments}
       />
       <InstanceListContainer>
         {ShareableCommitments.map((sc, i) => (
           <SC index={i} key={sc.id} instance={sc} />
         ))}
       </InstanceListContainer>
-    </SectionBodyContainer>
+    </Box>
   );
 };
 
