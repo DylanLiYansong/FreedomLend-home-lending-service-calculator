@@ -1,6 +1,6 @@
 import React from "react";
 import SingleInstance from "@/layout/SingleInstance";
-import { deleteInstance, getSCNumber } from "@/store/slices/formSlice";
+import { deleteInstance, getNSCNumber } from "@/store/slices/formSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { INonShareableCommitment } from "@/utils/interfaces/formInterfaces";
 import { Section } from "@/utils/constant/Fields";
@@ -12,7 +12,7 @@ const NSC = ({
   instance: INonShareableCommitment;
   index: number;
 }) => {
-  const numberOfInstances = useSelector(getSCNumber);
+  const numberOfInstances = useSelector(getNSCNumber);
   const { id } = instance;
   const dispatch = useDispatch();
   const handleDelete = () => {

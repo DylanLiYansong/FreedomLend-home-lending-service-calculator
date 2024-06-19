@@ -2,6 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
+import { INPUT_FIELD_WIDTH } from "@/utils/constant/Fields";
 export interface IOption {
   value: string;
   label: string;
@@ -14,7 +15,7 @@ const Selector = ({ options }: { options: IOption[] }) => {
         select
         size="small"
         sx={{
-          minWidth: "200px",
+          minWidth: INPUT_FIELD_WIDTH,
           "& .MuiInputBase-root": {
             height: 45,
           },

@@ -25,6 +25,10 @@ const theme = createTheme({
       fontWeight: "500",
       fontSize: "0.875rem",
     },
+    subtitle1: {
+      fontWeight: "500",
+      fontSize: "0.875rem",
+    },
   },
 });
 function App() {

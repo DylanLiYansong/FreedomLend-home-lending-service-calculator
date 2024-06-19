@@ -8,7 +8,7 @@ export enum Section {
 }
 export const SectionNames: Record<string, string> = {
   [Section.Applicants]: "Applicant",
-  [Section.Loans]: "Loan",
+  [Section.Loans]: "Proposed Loan",
   [Section.ShareableCommitments]: "Shareable Commitment",
   [Section.NonShareableCommitments]: "NonShareable Commitment",
 };
@@ -20,8 +20,24 @@ export interface FieldInterface {
   sectionId?: number;
   instanceId?: string;
 }
+export const INPUT_FIELD_WIDTH = "240px";
 
 export const applicantsFields: FieldInterface[] = [
+  {
+    id: "annualBaseIncome",
+    label: "Base Income",
+    type: "amount",
+  },
+  {
+    id: "annualNonBaseIncome",
+    label: "Non-base Income",
+    type: "amount",
+  },
+  {
+    id: "annualBonusIncome",
+    label: "Bonus",
+    type: "amount",
+  },
   {
     id: "monthlyLivingExpenses",
     label: "Basic Expense",
@@ -40,21 +56,6 @@ export const applicantsFields: FieldInterface[] = [
   {
     id: "monthlyRent",
     label: "Rent",
-    type: "amount",
-  },
-  {
-    id: "annualBaseIncome",
-    label: "Base Income",
-    type: "amount",
-  },
-  {
-    id: "annualNonBaseIncome",
-    label: "Non-base Income",
-    type: "amount",
-  },
-  {
-    id: "annualBonusIncome",
-    label: "Bonus",
     type: "amount",
   },
 ];
@@ -110,11 +111,6 @@ export const ShareableCommitmentFields: FieldInterface[] = [
   },
 ];
 const NonShareableCommitmentFields: FieldInterface[] = [
-  {
-    id: "commitmentTypeNSC",
-    label: "Type",
-    type: "select",
-  },
   {
     id: "outstandingBalanceNSC",
     label: "Outstanding Balance",

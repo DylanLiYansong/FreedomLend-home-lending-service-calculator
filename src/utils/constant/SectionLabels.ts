@@ -66,26 +66,26 @@ export const nonShareableCommitmentTypes: IOption[] = [
 ];
 
 export const applicantsSectionLabels = [
-  "Annual base income",
-  "Annual non-base income",
-  "Annual bonus income",
-  "Monthly living expenses",
-  "Monthly other expenses",
-  "Child support/alimony",
-  "Monthly rent",
+  "Annual Base Income",
+  "Annual Non-base Income",
+  "Annual Bonus Income",
+  "Monthly Living Expenses",
+  "Monthly Other Expenses",
+  "Child Support/Alimony",
+  "Monthly Rent",
 ];
 export const loansSectionLabels = [
-  "Loan amount",
-  "Lending interest rate (%)",
-  "Term (years)",
-  "Interest only terms (years)",
+  "Loan Amount",
+  "Interest Rate %",
+  "Loan Term (Years)",
+  "Interest Only Term (Years)",
 ];
 export const scSectionLabels = [
   "Commitment Type",
   "Outstanding Balance",
   "Current Limit",
   "Current Interest Rate (%)",
-  "Remaining P & I Term (months)",
+  "Remaining P & I Term (Months)",
   "Customer Declared Repayment",
 ];
 export const nscSectionLabels = [

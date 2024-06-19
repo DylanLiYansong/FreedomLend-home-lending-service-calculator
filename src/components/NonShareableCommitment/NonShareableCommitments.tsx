@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import { addInstance } from "@/store/slices/formSlice";
 import SectionContainer from "@/layout/SectionContainer";
 import { Section } from "@/utils/constant/Fields";
-import { getSCNumber } from "@/store/slices/formSlice";
+import { getNSCNumber } from "@/store/slices/formSlice";
 import NSCList from "./components/NSCList";
 
 const NonShareableCommitment = () => {
-  const numOfInstances = useSelector(getSCNumber);
+  const numOfInstances = useSelector(getNSCNumber);
 
   return (
     <SectionContainer
@@ -15,7 +15,7 @@ const NonShareableCommitment = () => {
       addButtonLable="ADD Non-Shareable Commitment"
       numberOfInstances={numOfInstances}
       addInstanceDispatch={addInstance({
-        section: Section.ShareableCommitments,
+        section: Section.NonShareableCommitments,
       })}
       children={<NSCList />}
     />

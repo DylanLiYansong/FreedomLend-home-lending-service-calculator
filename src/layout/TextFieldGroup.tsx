@@ -4,7 +4,10 @@ import { FieldInterface } from "@/utils/constant/Fields";
 import NumericInput from "./NumericInput";
 import { SxPropsStyles } from "@/theme/globalStyle.js";
 import { Section } from "@/utils/constant/Fields";
-import { shareableCommitmentTypes } from "@/utils/constant/SectionLabels";
+import {
+  shareableCommitmentTypes,
+  nonShareableCommitmentTypes,
+} from "@/utils/constant/SectionLabels";
 import Selector from "./Selector";
 const normalStyles: SxPropsStyles = {
   textFieldGroups: {
@@ -35,6 +38,9 @@ const TextFieldGroup = ({
     <Box sx={styles.textFieldGroups}>
       {section === Section.ShareableCommitments && (
         <Selector options={shareableCommitmentTypes} />
+      )}
+      {section === Section.NonShareableCommitments && (
+        <Selector options={nonShareableCommitmentTypes} />
       )}
       {fields.map((field) => {
         return <NumericInput key={field.id} field={field} />;

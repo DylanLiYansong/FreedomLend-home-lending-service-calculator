@@ -10,8 +10,8 @@ const Loans = () => {
   const numOfLoans = useSelector((state: RootState) => state.form.loans.length);
   return (
     <SectionContainer
-      headerText="Loans"
-      addButtonLable="ADD LOAN"
+      headerText="New Loan Details"
+      addButtonLable="ADD New LOAN"
       numberOfInstances={numOfLoans}
       addInstanceDispatch={addInstance({ section: Section.Loans })}
       children={<LoanList />}

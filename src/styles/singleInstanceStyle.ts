@@ -1,11 +1,10 @@
 import { SxPropsStyles } from "@/theme/globalStyle.js";
-export const INPUT_FIELD_WIDTH = "220px";
+import { INPUT_FIELD_WIDTH } from "@/utils/constant/Fields";
 export const singleInstanceContainerStyle: SxPropsStyles = {
   container: {
     display: "flex",
     flexDirection: "column",
     minWidth: INPUT_FIELD_WIDTH,
-    width: INPUT_FIELD_WIDTH,
   },
   header: {
     display: "flex",
