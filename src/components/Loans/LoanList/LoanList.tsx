@@ -31,7 +31,7 @@ const LoanList = () => {
                 Purpose
               </Typography>
             )}
-            <Box sx={{ width: "120px" }}>
+            <Box sx={{ width: "150px" }}>
               <Selector options={loadPurposeOptions} width="120px" />
 
               {/* <NumericInput key={field.id} field={field} /> */}

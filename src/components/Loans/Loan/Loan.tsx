@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteInstance, getLoansNumber } from "@/store/slices/formSlice";
 import ClearIcon from "@mui/icons-material/Clear";
 import { getFields, Section } from "@/utils/constant/Fields";
-import { SxPropsStyles } from "@/theme/globalStyle";
 import { Box, IconButton, Typography } from "@mui/material";
 import NumericInput from "@/layout/NumericInput";
 
@@ -41,11 +40,5 @@ const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {
       )}
     </Box>
   );
-};
-const loansStyles: SxPropsStyles = {
-  textFieldGroups: {
-    display: "flex",
-    flexDirection: "row",
-  },
 };
 export default Loan;

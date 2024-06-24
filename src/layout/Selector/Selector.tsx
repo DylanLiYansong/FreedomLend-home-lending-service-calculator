@@ -53,7 +53,7 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 4,
     fontSize: 14,
-    padding: "8px 18px 0 10px",
+    padding: "8px 18px 8px 10px",
   },
 }));
 

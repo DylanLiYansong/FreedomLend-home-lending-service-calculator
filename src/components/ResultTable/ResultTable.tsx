@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import westpac from "@/assets/westpac.png";
 import cba from "@/assets/cba.png";
 import { sectionContainerStyle } from "@/layout/SectionContainer";
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
 export enum LenderId {
   WESTPAC = 1,
   CBA = 2,
