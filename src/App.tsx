@@ -7,6 +7,14 @@ const theme = createTheme({
     primary: {
       main: "#fefefe",
     },
+    error: {
+      main: "#f44336", // Add a main color for the error palette
+      light: "#ffebee",
+    },
+    success: {
+      main: "#dbffdb", // Add a main color for the error palette
+      light: "#dbffdb",
+    },
   },
   typography: {
     fontFamily: [

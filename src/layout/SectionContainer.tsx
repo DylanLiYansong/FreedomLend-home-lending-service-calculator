@@ -3,7 +3,7 @@ import { Paper, Box, Collapse } from "@mui/material";
 import Header from "@/layout/SectionHeader";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-const style = {
+export const sectionContainerStyle = {
   minWidth: "640px",
   maxWidth: "1280px",
   width: "auto",
@@ -33,7 +33,7 @@ const SectionContainer = ({
   const childComponent = <Box>{children}</Box>;
 
   return (
-    <Paper elevation={3} sx={style}>
+    <Paper elevation={3} sx={sectionContainerStyle}>
       <Header
         headerText={headerText}
         addButtonLable={addButtonLable}

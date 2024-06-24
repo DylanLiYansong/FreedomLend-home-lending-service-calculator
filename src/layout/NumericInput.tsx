@@ -50,7 +50,7 @@ const NumericInput = ({ field }: { field: FieldInterface }) => {
         },
       }}
       InputProps={getInputProps()}
-      sx={{ width: "100%" }}
+      // sx={{ minWidth: "100%" }}
       variant="standard"
     />
   );

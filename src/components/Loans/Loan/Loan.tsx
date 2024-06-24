@@ -2,8 +2,11 @@ import React from "react";
 import { ILoanInterface } from "@/utils/interfaces/formInterfaces";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteInstance, getLoansNumber } from "@/store/slices/formSlice";
-import { Section } from "@/utils/constant/Fields";
-import SingleInstance from "@/layout/SingleInstance";
+import ClearIcon from "@mui/icons-material/Clear";
+import { getFields, Section } from "@/utils/constant/Fields";
+import { SxPropsStyles } from "@/theme/globalStyle";
+import { Box, IconButton, Typography } from "@mui/material";
+import NumericInput from "@/layout/NumericInput";
 
 const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {
   const dispatch = useDispatch();
@@ -12,15 +15,37 @@ const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {
   const handleDelete = () => {
     dispatch(deleteInstance({ section: Section.Loans, instanceId: loan.id }));
   };
+  const fields = getFields({
+    section: Section.Loans,
+    instanceId: id,
+  });
   return (
-    <SingleInstance
-      instanceIndex={index}
-      instanceId={id}
-      section={Section.Loans}
-      deleteEnabled={numberOfInstances > 1}
-      handleDeleteInstance={handleDelete}
-    />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        // gap: "16px",
+        alignItems: "flex-end",
+        justifyContent: "space-between",
+      }}
+    >
+      <Typography variant="subtitle1">Loans {index + 1}</Typography>
+      {fields.map((field) => {
+        return <NumericInput key={field.id} field={field} />;
+      })}
+
+      {numberOfInstances > 0 && (
+        <IconButton onClick={handleDelete}>
+          <ClearIcon />
+        </IconButton>
+      )}
+    </Box>
   );
 };
-
+const loansStyles: SxPropsStyles = {
+  textFieldGroups: {
+    display: "flex",
+    flexDirection: "row",
+  },
+};
 export default Loan;

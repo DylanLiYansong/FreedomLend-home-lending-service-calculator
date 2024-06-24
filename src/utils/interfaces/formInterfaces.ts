@@ -10,6 +10,17 @@ export interface IApplicantInterface {
   monthlyRent: number;
   index?: number;
 }
+export interface IIncome {
+  annualBaseIncome: number;
+  annualNonBaseIncome: number;
+  annualBonusIncome: number;
+}
+export interface IExpense {
+  monthlyLivingExpenses: number;
+  monthlyOtherExpenses: number;
+  childSupport: number;
+  monthlyRent: number;
+}
 export interface ILoanInterface {
   id: string;
   loanAmount: number;

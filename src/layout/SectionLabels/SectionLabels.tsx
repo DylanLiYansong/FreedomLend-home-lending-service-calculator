@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { Section } from "@/utils/constant/Fields";
 import { getLabelContainerStyle } from "@/styles/labelContainerStyle";
-
 const SectionLabels = ({
   labels,
   section,

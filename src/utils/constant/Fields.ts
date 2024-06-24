@@ -12,6 +12,7 @@ export const SectionNames: Record<string, string> = {
   [Section.ShareableCommitments]: "Shareable Commitment",
   [Section.NonShareableCommitments]: "NonShareable Commitment",
 };
+export type FlexDirection = "column" | "row";
 
 export interface FieldInterface {
   id: string;
@@ -57,29 +58,6 @@ export const applicantsFields: FieldInterface[] = [
     id: "monthlyRent",
     label: "Rent",
     type: "amount",
-  },
-];
-
-export const loansFields: FieldInterface[] = [
-  {
-    id: "loanAmount",
-    label: "Amount",
-    type: "amount",
-  },
-  {
-    id: "lendingInterestRate",
-    label: "Interest rate",
-    type: "rate",
-  },
-  {
-    id: "commitmentTerm",
-    label: "Term",
-    type: "quantity",
-  },
-  {
-    id: "interestOnlyTerm",
-    label: "Interest only term",
-    type: "quantity",
   },
 ];
 
@@ -141,8 +119,7 @@ const getSimpleFields = function getSimpleFields({
   switch (section) {
     case Section.Applicants:
       return applicantsFields;
-    case Section.Loans:
-      return loansFields;
+
     case Section.ShareableCommitments:
       return ShareableCommitmentFields;
     case Section.NonShareableCommitments:

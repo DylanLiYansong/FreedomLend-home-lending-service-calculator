@@ -7,7 +7,13 @@ export interface IOption {
   value: string;
   label: string;
 }
-const Selector = ({ options }: { options: IOption[] }) => {
+const Selector = ({
+  options,
+  width,
+}: {
+  options: IOption[];
+  width?: string;
+}) => {
   return (
     <div>
       <TextField
@@ -15,7 +21,7 @@ const Selector = ({ options }: { options: IOption[] }) => {
         select
         size="small"
         sx={{
-          minWidth: INPUT_FIELD_WIDTH,
+          width: width ? width : INPUT_FIELD_WIDTH,
           "& .MuiInputBase-root": {
             height: 45,
           },
@@ -47,7 +53,7 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     borderRadius: 4,
     fontSize: 14,
-    padding: "8px 18px 8px 10px",
+    padding: "8px 18px 0 10px",
   },
 }));
 

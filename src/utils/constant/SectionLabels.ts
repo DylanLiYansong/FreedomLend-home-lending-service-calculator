@@ -85,12 +85,12 @@ export const scSectionLabels = [
   "Outstanding Balance",
   "Current Limit",
   "Current Interest Rate (%)",
-  "Remaining P & I Term (Months)",
-  "Customer Declared Repayment",
+  "Remaining P & I Term",
+  "Declared Repayment",
 ];
 export const nscSectionLabels = [
   "Commitment Type",
   "Outstanding Balance",
   "Current Limit",
-  "Customer Declared Repayment",
+  "Declared Repayment",
 ];

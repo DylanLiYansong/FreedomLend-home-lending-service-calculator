@@ -1,6 +1,6 @@
 import { SxPropsStyles } from "@/theme/globalStyle.js";
 import { Section } from "@/utils/constant/Fields";
-
+import { FlexDirection } from "@/utils/constant/Fields";
 const LABEL_MIN_WIDTH = "200px";
 const APPLICANT_INCOME_EXPENSE_GAP = "25px";
 const applicantsLableContainerStyle: SxPropsStyles = {
@@ -33,10 +33,22 @@ const defaultLableContainerStyle: SxPropsStyles = {
     paddingTop: "25px",
   },
 };
+const loansRowContainerStyle: SxPropsStyles = {
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    minWidth: LABEL_MIN_WIDTH,
+  },
+  labels: {
+    paddingTop: "25px",
+  },
+};
 export const getLabelContainerStyle = (section: Section) => {
   if (section === Section.Applicants) {
     return applicantsLableContainerStyle;
   } else {
-    return defaultLableContainerStyle;
+    return section === Section.Loans
+      ? loansRowContainerStyle
+      : defaultLableContainerStyle;
   }
 };
