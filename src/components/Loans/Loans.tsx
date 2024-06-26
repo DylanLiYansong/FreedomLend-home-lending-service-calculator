@@ -7,7 +7,9 @@ import { RootState } from "@/store/store";
 import { Section } from "@/utils/constant/Fields";
 
 const Loans = () => {
-  const numOfLoans = useSelector((state: RootState) => state.form.loans.length);
+  const numOfLoans = useSelector(
+    (state: RootState) => state.form.formState.loans.length
+  );
   return (
     <SectionContainer
       headerText="New Loan Details"

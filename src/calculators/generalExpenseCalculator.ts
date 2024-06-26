@@ -5,11 +5,21 @@ export function calculateExpenses({
   monthlyOtherExpenses,
   childSupport,
   monthlyRent,
-}: IExpense) {
+}: IExpense): number {
   let totalExpenses = 0;
   // Calculate total expenses for this applicant
   const applicantTotalExpenses =
     monthlyLivingExpenses + monthlyOtherExpenses + childSupport + monthlyRent;
   totalExpenses += applicantTotalExpenses;
-  return { totalExpenses };
+  return totalExpenses;
 }
+export const calculateTotalIncome = (applicantsExpense: IExpense[]): number => {
+  return applicantsExpense.reduce(
+    (accumulator, currentApplicantIncome, index) => {
+      const currentValue = calculateExpenses(currentApplicantIncome);
+      const totalExp = accumulator + currentValue;
+      return totalExp;
+    },
+    0
+  );
+};

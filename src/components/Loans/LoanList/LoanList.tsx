@@ -12,7 +12,7 @@ import Selector from "@/layout/Selector";
 import { IOption } from "@/layout/Selector/Selector";
 const LoanList = () => {
   const loans = useSelector((state: RootState) => {
-    return state.form.loans;
+    return state.form.formState.loans;
   });
   const dispatch = useDispatch();
   const handleDelete = (loadId: string) => {
@@ -21,9 +21,9 @@ const LoanList = () => {
   return (
     <Box sx={styles.container}>
       {loans.map((loan, i) => (
-        <Box sx={styles.columns}>
+        <Box sx={styles.loan}>
           <Typography variant="subtitle1" sx={styles.instanceName}>
-            Loans {i + 1}
+            Loan {i + 1}
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             {i === 0 && (
@@ -86,10 +86,11 @@ export const styles: SxPropsStyles = {
     margin: "8px",
     padding: "8px",
   },
-  columns: {
+  loan: {
     display: "flex",
     flexDirection: "row",
     alignItems: "flex-end",
+    gap: "16px",
     justifyContent: "space-between",
   },
   instanceName: {

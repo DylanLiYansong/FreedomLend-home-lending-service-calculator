@@ -3,12 +3,7 @@ interface TaxBracket {
   threshold: number; // Tax threshold for this bracket
   rate: number; // Tax rate for income within this bracket
 }
-interface IIncomeCalculatorOutput {
-  taxableIncome: number;
-  netIncome: number;
-  taxPayable: number;
-  applicantMonthlyNetIncome: number;
-}
+
 // Define tax brackets and rates (2023-2024 rates for example)
 const taxBrackets: TaxBracket[] = [
   { threshold: 18200, rate: 0 },
@@ -18,11 +13,11 @@ const taxBrackets: TaxBracket[] = [
   { threshold: Infinity, rate: 0.45 },
 ];
 
-export function calculateIncome({
+export function calculateSingleIncome({
   annualBaseIncome,
   annualNonBaseIncome,
   annualBonusIncome,
-}: IIncome): IIncomeCalculatorOutput {
+}: IIncome): number {
   // Calculate total income
   const totalIncome =
     annualBaseIncome + annualNonBaseIncome + annualBonusIncome;
@@ -57,5 +52,15 @@ export function calculateIncome({
   const applicantMonthlyNetIncome = netIncome / 12;
 
   // Return results
-  return { taxableIncome, netIncome, taxPayable, applicantMonthlyNetIncome };
+  return applicantMonthlyNetIncome;
 }
+export const calculateTotalIncome = (applicantsIncome: IIncome[]): number => {
+  return applicantsIncome.reduce(
+    (accumulator, currentApplicantIncome, index) => {
+      const currentValue = calculateSingleIncome(currentApplicantIncome);
+      const totalIncome = accumulator + currentValue;
+      return totalIncome;
+    },
+    0
+  );
+};

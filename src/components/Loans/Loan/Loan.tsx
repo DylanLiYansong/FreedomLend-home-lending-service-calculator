@@ -23,7 +23,6 @@ const Loan = ({ loan, index }: { loan: ILoanInterface; index: number }) => {
       sx={{
         display: "flex",
         flexDirection: "row",
-        // gap: "16px",
         alignItems: "flex-end",
         justifyContent: "space-between",
       }}

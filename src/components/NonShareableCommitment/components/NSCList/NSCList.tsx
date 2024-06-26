@@ -11,7 +11,7 @@ import { Box } from "@mui/material";
 
 const NSCList = () => {
   const nonShareableCommitments = useSelector((state: RootState) => {
-    return state.form.nonShareableCommitments;
+    return state.form.formState.nonShareableCommitments;
   });
 
   return (

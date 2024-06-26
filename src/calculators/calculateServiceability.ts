@@ -4,21 +4,13 @@ type RepaymentResults = {
   [key: string]: number;
 };
 
-// type ServiceabilityResult = {
-//   totalServiceabilityRepayment: number;
-//   repaymentResults: RepaymentResults;
-//   totalLoanAmount: number;
-// };
-
-function calculateServiceabilityRepayment(
+function calculateLoanRepayment(
   loanDetails: ILoanInterface,
   interestRateBuffer: number = 3,
   floorRateA: number = 5.05,
   floorRateB: number = 6.19
 ): number {
   let totalServiceabilityRepayment = 0;
-  //   let totalLoanAmount = 0;
-  //   let repaymentResults: RepaymentResults = {};
   const {
     lendingInterestRate,
     commitmentTerm,
@@ -35,14 +27,14 @@ function calculateServiceabilityRepayment(
     (rate * loanAmount) / (1 - Math.pow(1 + rate, -numOfPeriod));
 
   totalServiceabilityRepayment += serviceabilityRepayment;
-  //   totalLoanAmount += loanAmount;
 
   return totalServiceabilityRepayment;
-  //{
-  //     totalServiceabilityRepayment,
-  //     // repaymentResults,
-  //     // totalLoanAmount,
-  //   };
 }
-
-export default calculateServiceabilityRepayment;
+export const calculateTotalRepayment = (loans: ILoanInterface[]): number => {
+  return loans.reduce((accumulator, currentLoan, index) => {
+    const currentValue = calculateLoanRepayment(currentLoan);
+    const totalRepayment = accumulator + currentValue;
+    return totalRepayment;
+  }, 0);
+};
+export default calculateTotalRepayment;

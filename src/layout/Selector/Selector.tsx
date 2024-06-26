@@ -1,7 +1,10 @@
-import React from "react";
-import { TextField } from "@mui/material";
-import InputBase from "@mui/material/InputBase";
-import { styled } from "@mui/material/styles";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+
 import { INPUT_FIELD_WIDTH } from "@/utils/constant/Fields";
 export interface IOption {
   value: string;
@@ -14,47 +17,42 @@ const Selector = ({
   options: IOption[];
   width?: string;
 }) => {
+  const [value, setValue] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setValue(event.target.value as string);
+  };
   return (
-    <div>
-      <TextField
-        id="select-shareable-commitmenttype"
-        select
-        size="small"
-        sx={{
-          width: width ? width : INPUT_FIELD_WIDTH,
-          "& .MuiInputBase-root": {
-            height: 45,
-          },
-          "& .MuiInputBase-input": {
-            height: "100%",
-            boxSizing: "border-box",
-          },
-        }}
-        SelectProps={{
-          native: true,
-          input: <BootstrapInput />,
-        }}
-        variant="standard"
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </TextField>
-    </div>
+    <Box sx={{ minWidth: 120 }}>
+      <FormControl fullWidth>
+        {/* <InputLabel id="demo-simple-select-label">Type</InputLabel> */}
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={value}
+          // label="Type"
+          onChange={handleChange}
+          sx={{
+            height: "45px",
+            "& .MuiSelect-select": {
+              padding: "8px 14px",
+            },
+          }}
+          MenuProps={{
+            PaperProps: {
+              style: {
+                maxHeight: 200,
+              },
+            },
+          }}
+        >
+          {options.map((option) => (
+            <MenuItem value={option.value}>{option.label}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
   );
 };
-
-export const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  "label + &": {
-    marginTop: theme.spacing(3),
-  },
-  "& .MuiInputBase-input": {
-    borderRadius: 4,
-    fontSize: 14,
-    padding: "8px 18px 8px 10px",
-  },
-}));
 
 export default Selector;

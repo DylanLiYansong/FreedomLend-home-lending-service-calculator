@@ -7,6 +7,9 @@ const theme = createTheme({
     primary: {
       main: "#fefefe",
     },
+    secondary: {
+      main: "#1976d2",
+    },
     error: {
       main: "#f44336", // Add a main color for the error palette
       light: "#ffebee",

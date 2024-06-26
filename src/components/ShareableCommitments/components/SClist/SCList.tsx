@@ -11,7 +11,7 @@ import { Box } from "@mui/material";
 
 const SCList = () => {
   const ShareableCommitments = useSelector((state: RootState) => {
-    return state.form.shareableCommitments;
+    return state.form.formState.shareableCommitments;
   });
 
   return (

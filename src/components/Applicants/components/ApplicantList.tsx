@@ -10,7 +10,7 @@ import { sectionBodyContainertyles } from "@/styles/styles";
 import { Box } from "@mui/material";
 const ApplicantList = () => {
   const applicants = useSelector((state: RootState) => {
-    return state.form.applicants;
+    return state.form.formState.applicants;
   });
 
   return (

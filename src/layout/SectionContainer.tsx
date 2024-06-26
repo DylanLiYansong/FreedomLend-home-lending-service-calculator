@@ -4,7 +4,7 @@ import Header from "@/layout/SectionHeader";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
 export const sectionContainerStyle = {
-  minWidth: "640px",
+  minWidth: "850px",
   maxWidth: "1280px",
   width: "auto",
   margin: "32px",

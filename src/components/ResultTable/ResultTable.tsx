@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,47 +6,23 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import westpac from "@/assets/westpac.png";
-import cba from "@/assets/cba.png";
+import { formatAmount } from "@/utils/functions";
 import { sectionContainerStyle } from "@/layout/SectionContainer";
 import { Box } from "@mui/material";
-export enum LenderId {
-  WESTPAC = 1,
-  CBA = 2,
-}
-
-interface Lender {
-  lenderId: LenderId;
-  lenderName: string;
-  image: string;
-  monthlySurplus: string;
-  productRate: string;
-  monthlyRepay: string;
-  eligible: boolean;
-}
-
-const rows: Lender[] = [
-  {
-    lenderId: 1,
-    lenderName: "westpac",
-    image: westpac,
-    monthlySurplus: "-$12.9",
-    productRate: "6.14%",
-    monthlyRepay: "$3034",
-    eligible: true,
-  },
-  {
-    lenderId: 2,
-    lenderName: "commonwealth bank",
-    image: cba,
-    monthlySurplus: "-$12.9",
-    productRate: "6.54%",
-    monthlyRepay: "$3044",
-    eligible: false,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getFormData,
+  getAssessmentResult,
+  calculate,
+} from "@/store/slices/formSlice";
 
 export default function BasicTable() {
+  const formData = useSelector(getFormData);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(calculate());
+  }, [formData]);
+  const rows = useSelector(getAssessmentResult);
   return (
     <TableContainer component={Paper} sx={sectionContainerStyle}>
       <Box sx={{ padding: "32px" }}>
@@ -64,28 +40,32 @@ export default function BasicTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map(({ lender, eligible, monthlyRepay, monthlySurplus }) => (
               <TableRow
-                key={row.lenderId}
+                key={lender.lenderId}
                 sx={{
                   backgroundColor: `${
-                    row.eligible ? "success.light" : "error.light"
+                    eligible ? "success.light" : "error.light"
                   }`,
                 }}
               >
                 <TableCell component="th" scope="row">
                   <img
-                    src={row.image}
-                    alt={row.lenderName}
+                    src={lender.image}
+                    alt={lender.lenderName}
                     style={{
                       height: "32px",
                       objectFit: "contain",
                     }}
                   />
                 </TableCell>
-                <TableCell align="right">{row.monthlySurplus}</TableCell>
-                <TableCell align="right">{row.productRate}</TableCell>
-                <TableCell align="right">{row.monthlyRepay}</TableCell>
+                <TableCell align="right">
+                  {formatAmount(monthlySurplus)}
+                </TableCell>
+                <TableCell align="right">{lender.interestRate}</TableCell>
+                <TableCell align="right">
+                  {formatAmount(monthlyRepay)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
